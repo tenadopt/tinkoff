@@ -3,11 +3,9 @@ function result() {
     let userInput = ''
     process.stdin.on('data', (data) => {
         userInput += data.toString()
-        console.log(userInput)
     })
     process.stdin.on('end', () => {
         const arr = userInput.split("\n")
-        console.log(arr)
         const answer = checkData(arr)
         console.log(answer)
     })
