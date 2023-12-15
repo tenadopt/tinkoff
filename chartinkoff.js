@@ -1,15 +1,3 @@
-const fs = require('fs');
-
-// Reading from a file asynchronously
-fs.readFile('chartinkoff.txt', 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading the file:', err);
-        return;
-    }
-    console.log('File content:', data);
-
-});
-
 function result() {
     // accumulator for enter data type string
     let userInput = ''
@@ -18,13 +6,27 @@ function result() {
         console.log(userInput)
     })
     process.stdin.on('end', () => {
-        const answer = check(userInput)
-       console.log(answer)
+        const arr = userInput.split("\n")
+        console.log(arr)
+        const answer = checkData(arr)
+        console.log(answer)
     })
 }
 
-function check(str) {
-    return ("TINKOFF".split('').sort().join('') === str.split('').sort().join('')) ? "Yes" : "No"
+function sortString (str) {
+    return str.split('').sort().join('')
+}
+
+function checkString(str) {
+    return sortString("TINKOFF") === sortString(str) ? "Yes" : "No"
+}
+
+function checkData (arr) {
+    let res = []
+    for (i=1;i<=arr[0];i++) {
+        res.push(checkString(arr[i]))
+    }
+    return res
 }
 
 result()
